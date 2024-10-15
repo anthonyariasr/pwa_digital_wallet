@@ -1,25 +1,42 @@
+import { IonAlert, IonButton, IonContent, IonInput, IonItem, IonPage, IonText } from '@ionic/react';
+import axios from 'axios';
 import React, { useState } from 'react';
-import { IonContent, IonPage, IonInput, IonItem, IonLabel, IonButton, IonAlert, IonText, IonRouterOutlet } from '@ionic/react';
-import { Redirect, Route } from 'react-router-dom';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
-import "./Login.css"
+import "./Login.css";
 
 const Login: React.FC = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
   const [showAlert, setShowAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState('');
   const history = useHistory();
 
-  const handleLogin = () => {
-    // Basic validation to check if username and password are not empty
-    if (username && password) {
-      // Store username in localStorage
-      localStorage.setItem('username', username);
-      // Redirect to home page after successful login
-      history.push('/home');
+  const handleLogin = async () => {
+    if (username && email && password) {
+      try {
+        const response = await axios.post('http://localhost:5000/api/login', {
+          username,
+          email,
+          password,
+        });
+
+        if (response.data.success) {
+          // Store username in localStorage
+          localStorage.setItem('username', username);
+          // Redirect to home page after successful login
+          history.push('/home');
+        } else {
+          setAlertMessage('Invalid username or password or email.');
+          setShowAlert(true);
+        }
+      } catch (error) {
+        setAlertMessage('Error connecting to server. Please try again later.');
+        setShowAlert(true);
+      }
     } else {
-      // Show alert if the username or password are missing
+      setAlertMessage('Please enter a valid username and password and email.');
       setShowAlert(true);
     }
   };
@@ -27,26 +44,48 @@ const Login: React.FC = () => {
   return (
     <IonPage>
       <IonContent className='ion-padding'>
-        
         <IonItem className='input-item'>
-            <IonInput label="Email" labelPlacement="stacked" placeholder=""></IonInput>
+          <IonInput
+            value={username}
+            onIonChange={(e) => setUsername(e.detail.value!)}
+            label="Username"
+            labelPlacement="stacked"
+            placeholder=""
+          ></IonInput>
         </IonItem>
 
         <IonItem className='input-item'>
-            <IonInput label="Password" type="password" labelPlacement="stacked" placeholder=""></IonInput>
+          <IonInput
+            value={email}
+            onIonChange={(e) => setEmail(e.detail.value!)}
+            label="Email"
+            labelPlacement="stacked"
+            placeholder=""
+          ></IonInput>
         </IonItem>
 
+        <IonItem className='input-item'>
+          <IonInput
+            value={password}
+            onIonChange={(e) => setPassword(e.detail.value!)}
+            label="Password"
+            type="password"
+            labelPlacement="stacked"
+            placeholder=""
+          ></IonInput>
+        </IonItem>
 
         <IonButton expand="block" onClick={handleLogin}>Login</IonButton>
 
-
-        <IonText>Doesn't have an account? <a>Register Here</a></IonText>
+        <IonText>
+          Don't have an account? <Link to="/Register">Register Here</Link>
+        </IonText>
 
         <IonAlert
           isOpen={showAlert}
           onDidDismiss={() => setShowAlert(false)}
           header={'Login Failed'}
-          message={'Please enter a valid username and password.'}
+          message={alertMessage}
           buttons={['OK']}
         />
       </IonContent>
