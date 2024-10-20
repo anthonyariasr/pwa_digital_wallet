@@ -1,8 +1,48 @@
-
-.input-item{
+.input-item {
     margin-bottom: 32px;
 }
 
-.login-container{
+.login-container {
     padding: 24px;
+}
+
+/* Contenedor principal del formulario de inicio de sesión */
+.login-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Hace que el contenedor ocupe toda la altura de la pantalla */
+    background: linear-gradient(to right, #4a90e2, #9013fe); /* Gradiente de fondo */
+}
+
+/* Formulario de inicio de sesión */
+.login-form {
+    background: white;
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Sombra para darle profundidad */
+    padding: 24px;
+    width: 100%;
+    max-width: 400px; /* Ancho máximo del formulario */
+}
+
+/* Títulos del formulario */
+.login-form h1 {
+    text-align: center;
+    margin-bottom: 24px;
+    color: #333; /* Color del texto */
+}
+
+/* Botón de inicio de sesión */
+.login-button {
+    margin-top: 16px;
+    background-color: #4a90e2; /* Color de fondo del botón */
+    color: white; /* Color del texto del botón */
+}
+
+/* Estilo del enlace para registro */
+.login-link {
+    text-align: center;
+    display: block; /* Asegura que el enlace esté en su propia línea */
+    margin-top: 16px;
+    color: #4a90e2; /* Color del enlace */
 }

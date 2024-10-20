@@ -1,0 +1,42 @@
+.input-item {
+    margin-bottom: 32px;
+}
+
+.register-page {
+    background: linear-gradient(to right, #4a90e2, #9013fe); /* Gradiente de fondo */
+    border-radius: 8px; /* Bordes redondeados */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Hace que el contenedor ocupe toda la altura de la pantalla */
+
+}
+
+
+.register-form {
+    background: white;
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Sombra para darle profundidad */
+    padding: 24px;
+    width: 100%;
+    max-width: 400px; /* Ancho máximo del formulario */
+}
+
+.register-form h1 {
+    text-align: center;
+    margin-bottom: 24px;
+    color: #333;
+}
+
+.register-button {
+    margin-top: 16px;
+    background-color: #4a90e2;
+    color: white;
+}
+
+.login-link {
+    text-align: center;
+    display: block;
+    margin-top: 16px;
+    color: #4a90e2;
+}
