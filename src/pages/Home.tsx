@@ -1,13 +1,9 @@
-// src/pages/Home.tsx
 import { IonAlert, IonButton, IonContent, IonPage, IonText } from '@ionic/react';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom'; // Importa useHistory para navegación
 import './Home.css';
 import Scanner from './Scanner';
-
-
-
 
 const Home: React.FC = () => {
   const [walletBalance, setWalletBalance] = useState(0.00);
@@ -17,13 +13,7 @@ const Home: React.FC = () => {
   const [showHistory, setShowHistory] = useState(false);
   const history = useHistory();
 
-  interface Sale {
-    sale_id: string;
-    amount: number;
-    sale_date: string;
-  }
-
-  const [purchaseHistory, setPurchaseHistory] = useState<any[]>([]); // Estado inicializado como array vacío
+  const [purchaseHistory, setPurchaseHistory] = useState<any[]>([]);
   const userId = localStorage.getItem('clientId');
   const username = localStorage.getItem('username');
 
@@ -34,7 +24,7 @@ const Home: React.FC = () => {
         const response = await axios.post('http://192.168.1.75:5000/api/money', { id: userId });
 
         if (response.data.success) {
-          const balanceInt = parseInt(response.data.balance, 10); // Convertir a entero
+          const balanceInt = parseInt(response.data.balance, 10);
           setWalletBalance(balanceInt || 0.00);
         } else {
           setAlertMessage(response.data.message || 'No se pudo obtener el saldo del monedero.');
@@ -59,7 +49,6 @@ const Home: React.FC = () => {
 
         let parsedData;
         try {
-          // Reemplazar comillas simples por comillas dobles antes de parsear
           const jsonData = data.replace(/'/g, '"');
           parsedData = JSON.parse(jsonData);
         } catch (error) {
@@ -80,7 +69,7 @@ const Home: React.FC = () => {
         }
       
         const response = await axios.post(apiEndpoint, {
-          data: parsedData, // Asegúrate de enviar el JSON parseado
+          data: parsedData,
           id: userId,
         });
       
@@ -138,7 +127,7 @@ const Home: React.FC = () => {
   
           <div className="wallet-balance">
             <IonText>
-              <h3>Monedero:</h3>
+              <h3>Saldo:</h3>
             </IonText>
             <IonText>
               <p>${walletBalance.toFixed(2)}</p>
@@ -181,7 +170,17 @@ const Home: React.FC = () => {
           </IonButton>
   
           {showScanner && (
-            <Scanner onScanSuccess={handleScanSuccess} />
+            <div>
+              <Scanner onScanSuccess={handleScanSuccess} />
+              <IonButton
+                className="backbutton"
+                shape="round"
+                color="danger"
+                onClick={() => setShowScanner(false)}  // Acción para cerrar el escáner
+              >
+                Regresar
+              </IonButton>
+            </div>
           )}
         </div>
 

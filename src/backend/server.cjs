@@ -5,7 +5,7 @@ const CryptoJS = require('crypto-js'); // Cambiar a require
 
 const app = express();
 const port = 5000;
-const SECRET_KEY = "Q3BTRKRU9VA4T5HH0G7M";
+const SECRET_KEY = "";
 
 function decryptMessage(secretKey, encryptedMessage) {
   const key = CryptoJS.enc.Utf8.parse(secretKey.padEnd(32));
@@ -28,11 +28,11 @@ function decryptMessage(secretKey, encryptedMessage) {
 
 // Configuración de la conexión a PostgreSQL
 const pool = new Pool({
-  user: 'postgres',
-  host: 'localhost',
-  database: 'proyecto_II',
-  password: 'Luisa1240',
-  port: '5432'
+  user: '',
+  host: '',
+  database: '',
+  password: '',
+  port: ''
 });
 
 // Middleware
@@ -230,6 +230,17 @@ async function generateSale(client_id, orderId, res) {
       if (orderUpdate.rows.length === 0) {
         await client.query('ROLLBACK');
         return res.status(400).json({ success: false, message: 'Order not found.' });
+      }
+
+
+      const clientUpdate = await client.query(
+        'UPDATE Clients SET order_id = $1 WHERE client_id = $2 RETURNING client_id',
+        [orderId, client_id]
+      );
+
+      if (clientUpdate.rows.length === 0) {
+        await client.query('ROLLBACK');
+        return res.status(400).json({ success: false, message: 'Client not found.' });
       }
 
 

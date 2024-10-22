@@ -53,3 +53,12 @@
     background: #3880ff; /* Eliminado '--' para asegurar consistencia */
     color: white; /* Eliminado '--' para asegurar consistencia */
 }
+.back-button {
+    color: #fff;
+    position: absolute;
+    top: 630px; /* Ajusta según sea necesario */
+    left: 10px; /* Ajusta según sea necesario */
+    padding: 10px 20px; /* Añadiendo un poco de padding para mejor apariencia */
+    border-radius: 5px; /* Bordes redondeados */
+    z-index: 1000; /* Asegura que el botón esté por encima de otros elementos */
+  }
