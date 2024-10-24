@@ -1,7 +1,7 @@
 import { IonAlert, IonButton, IonContent, IonPage, IonText } from '@ionic/react';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom'; // Importa useHistory para navegación
+import { Link, useHistory } from 'react-router-dom'; // Importa useHistory para navegación
 import './Home.css';
 import Scanner from './Scanner';
 
@@ -115,31 +115,35 @@ const Home: React.FC = () => {
     handleMoney();
   }, []);
   
+
   return (
     <IonPage>
       <IonContent className='ion-padding home-form'>
+        <IonText className="login-link">
+          <Link to="/tab1">Cerrar sesión</Link>
+        </IonText>
         <div className="home-container">
-          <div className="username">
+          <div className="section username">
             <IonText>
-              <p>{username}</p>
+              <p className="username-text">{username}</p>
             </IonText>
           </div>
-  
-          <div className="wallet-balance">
+
+          <div className="section wallet-balance">
             <IonText>
               <h3>Saldo:</h3>
             </IonText>
             <IonText>
-              <p>${walletBalance.toFixed(2)}</p>
+              <p className="balance-text">${walletBalance.toFixed(2)}</p>
             </IonText>
           </div>
-  
+
           <IonButton expand="block" className="history-button" onClick={handleHistorySucces}>
             Historial de compras
           </IonButton>
-  
+
           {showHistory && (
-            <div className="history-table">
+            <div className="history-table section">
               <table>
                 <thead>
                   <tr>
@@ -160,7 +164,7 @@ const Home: React.FC = () => {
               </table>
             </div>
           )}
-  
+
           <IonButton
             className="scan-button"
             shape="round"
@@ -168,15 +172,14 @@ const Home: React.FC = () => {
           >
             Escanear
           </IonButton>
-  
+
           {showScanner && (
-            <div>
+            <div className="scanner-container">
               <Scanner onScanSuccess={handleScanSuccess} />
               <IonButton
-                className="backbutton"
-                shape="round"
+                className="back-button"
                 color="danger"
-                onClick={() => setShowScanner(false)}  // Acción para cerrar el escáner
+                onClick={() => setShowScanner(false)}
               >
                 Regresar
               </IonButton>
@@ -199,5 +202,4 @@ const Home: React.FC = () => {
     </IonPage>
   );
 };
-
-export default Home;
+export default Home

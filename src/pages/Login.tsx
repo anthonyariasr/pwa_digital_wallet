@@ -2,6 +2,7 @@ import { IonAlert, IonButton, IonContent, IonInput, IonItem, IonPage, IonText } 
 import axios from 'axios';
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import logo from '../images/logo-1913689_1280.png';
 import "./Login.css";
 
 const Login: React.FC = () => {
@@ -52,6 +53,7 @@ const Login: React.FC = () => {
   return (
     <IonPage className="login-page">
       <IonContent className='ion-padding login-form'>
+       <img src={logo} alt="logo" className="logo" />
         <h1>Inicio de sesión</h1> {/* Agregando un título */}
         <IonItem className='input-item'>
           <IonInput

@@ -2,6 +2,7 @@ import { IonAlert, IonButton, IonContent, IonInput, IonItem, IonPage, IonText } 
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import logo from '../images/logo-1913689_1280.png';
 import './Register.css'; // Asegúrate de importar el archivo CSS
 
 const Register: React.FC = () => {
@@ -46,6 +47,7 @@ const Register: React.FC = () => {
   return (
     <IonPage className="register-page">
       <IonContent className="ion-padding register-form"> {/* Agregar clase de contenedor */}
+      <img src={logo} alt="logo" className="logo" />
       <h1>Registro</h1> {/* Agregando un título */}
         <IonItem className="input-item">
           <IonInput

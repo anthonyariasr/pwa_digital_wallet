@@ -12,7 +12,6 @@ function decryptMessage(secretKey, encryptedMessage) {
   const decodedMessage = CryptoJS.enc.Base64.parse(encryptedMessage);
   const iv = CryptoJS.lib.WordArray.create(decodedMessage.words.slice(0, 4));
   const ciphertext = CryptoJS.lib.WordArray.create(decodedMessage.words.slice(4));
-
   const decrypted = CryptoJS.AES.decrypt(
       { ciphertext: ciphertext },
       key,
@@ -22,7 +21,6 @@ function decryptMessage(secretKey, encryptedMessage) {
           mode: CryptoJS.mode.CBC
       }
   );
-
   return decrypted.toString(CryptoJS.enc.Utf8);
 }
 
@@ -234,8 +232,8 @@ async function generateSale(client_id, orderId, res) {
 
 
       const clientUpdate = await client.query(
-        'UPDATE Clients SET order_id = $1 WHERE client_id = $2 RETURNING client_id',
-        [orderId, client_id]
+        'UPDATE Sale_Order SET client_id = $1 WHERE order_id = $2 RETURNING client_id',
+        [client_id, orderId]
       );
 
       if (clientUpdate.rows.length === 0) {

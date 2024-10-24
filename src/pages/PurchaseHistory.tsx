@@ -21,7 +21,7 @@ const PurchaseHistory: React.FC = () => {
           <IonText>
             <h2>Historial de Compras</h2>
           </IonText>
-          <table>
+          <table className="history-table">
             <thead>
               <tr>
                 <th>ID de Venta</th>
@@ -33,13 +33,13 @@ const PurchaseHistory: React.FC = () => {
               {purchaseHistory.map((sale) => (
                 <tr key={sale.sale_id}>
                   <td>{sale.sale_id}</td>
-                  <td>${parseFloat(sale.amount).toFixed(2)}</td>
+                  <td>${parseFloat(sale.amount)}</td>
                   <td>{new Date(sale.sale_date).toLocaleString()}</td>
                 </tr>
               ))}
             </tbody>
           </table>
-          <IonButton expand="block" routerLink="/home">
+          <IonButton expand="block" routerLink="/home" className="back-button">
             Volver a inicio
           </IonButton>
         </div>

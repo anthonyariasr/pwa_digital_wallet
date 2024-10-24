@@ -1,72 +1,82 @@
-.login-page {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background: linear-gradient(to right, #4a90e2, #9013fe);
-    border-radius: 8px;
-  }
-  
-  .login-form {
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    padding: 24px;
-    width: 100%;
-    max-width: 400px;
-  }
-  
-  .login-form h1 {
-    text-align: center;
-    margin-bottom: 24px;
-    color: #333;
-  }
-  
-  .input-item {
-    margin-bottom: 32px;
-  }
-  
-  .input-item ion-input {
-    --background: #f9f9f9;
-    --border-radius: 5px;
-    --padding-start: 10px;
-    --placeholder-opacity: 0.7;
-    transition: all 0.3s ease-in-out;
-  }
-  
-  .input-item ion-input:focus {
-    --background: #e0e0e0;
-  }
-  
-  .login-button {
-    margin-top: 16px;
-    background-color: #4a90e2;
-    color: white;
-    --border-radius: 5px;
-    --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: background 0.3s ease-in-out;
-  }
-  
-  .login-button:hover {
-    background-color: #9013fe;
-  }
-  
-  .register-link {
-    text-align: center;
-    display: block;
-    margin-top: 16px;
-    color: #4a90e2;
-    transition: color 0.3s ease-in-out;
-  }
-  
-  .register-link a {
-    color: #4a90e2;
-    text-decoration: none;
-    transition: text-decoration 0.3s ease-in-out;
-  }
-  
-  .register-link a:hover {
-    color: #9013fe;
-    text-decoration: underline;
-  }
-  
+.register-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(to right, #4a90e2, #9013fe);
+  border-radius: 8px;
+}
+
+.register-form {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  padding: 24px;
+  width: 100%;
+  max-width: 400px;
+  text-align: center; /* Centrar el contenido */
+}
+
+.register-form h1 {
+  text-align: center;
+  margin-bottom: 24px;
+  color: #333;
+}
+
+.input-item {
+  margin-bottom: 32px;
+}
+
+.input-item ion-input {
+  --background: #f9f9f9;
+  --border-radius: 5px;
+  --padding-start: 10px;
+  --placeholder-opacity: 0.7;
+  transition: all 0.3s ease-in-out;
+}
+
+.input-item ion-input:focus {
+  --background: #e0e0e0;
+}
+
+.register-button {
+  margin-top: 16px;
+  background-color: #4a90e2;
+  color: white;
+  --border-radius: 5px;
+  --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background 0.3s ease-in-out;
+}
+
+.register-button:hover {
+  background-color: #9013fe;
+}
+
+.register-link {
+  text-align: center;
+  display: block;
+  margin-top: 16px;
+  color: #4a90e2;
+  transition: color 0.3s ease-in-out;
+}
+
+.register-link a {
+  color: #4a90e2;
+  text-decoration: none;
+  transition: text-decoration 0.3s ease-in-out;
+}
+
+.register-link a:hover {
+  color: #9013fe;
+  text-decoration: underline;
+}
+
+.register-form img.logo {
+  width: 150px; /* Ajusta el tamaño según sea necesario */
+  margin-bottom: 1rem;
+  transition: transform 0.3s ease-in-out;
+}
+
+.register-form img.logo:hover {
+  transform: scale(1.05);
+}
